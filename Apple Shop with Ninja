@@ -1,0 +1,27 @@
+/* Apple Shop with Ninja
+
+https://www.codingninjas.com/codestudio/contests/love-babbar-contest-l/3189127/problems/14804?leftPanelTab=0
+
+*/-----------------------------------------------------------------------------------------------------------------------------------------------
+
+import java.util.Arrays;
+import java.util.Collections;
+public class Solution {
+
+    public static long appleAndCoupon(int n, int m, int[] arr) {
+        
+        // Write your Code Here
+        int count=0;
+        // int max=0;
+        Arrays.sort(arr);
+        count=0;
+        for(int i=n-1;i>=0;i--)
+        {
+            if((n-i)==(m))
+                continue;
+            else
+                count+=arr[i];
+        }
+        return count;
+    }
+}
