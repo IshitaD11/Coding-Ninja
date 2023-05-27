@@ -1,0 +1,36 @@
+/* Longest Subarray Zero Sum 
+
+https://www.codingninjas.com/codestudio/problems/longest-subset-zero-sum_920321 */
+
+import java.io.*;
+import java.util.* ;
+
+import java.util.ArrayList;
+ /*To get the sum=0, need to find the sum of each sub array by prefixSum or carry forward.
+ When the same sum occurs twice meaning pf[i]-pf[j]=5-5=0, this will be the subaary with sum 0.
+ Create and hashmap to store sum and the index. 
+ Do not update index for 2nd occurance of sum, as we need longest length. 
+ index will store left most occurance, and we will check occurance on the right side every time. For each find on the right side, length will increase
+ store (0,-1) in hashset to handle when sum is 0. [5,-2,-2,5] sum=0 at index 3. length = 3-0+1. 
+ To handle (+1) part, we are storing (0,-1), so at occurance of 0, len = index - (-1) = index+1 */
+public class Solution {
+
+	public static int LongestSubsetWithZeroSum(ArrayList<Integer> arr) {
+
+		HashMap<Integer,Integer> map = new HashMap<Integer,Integer>();
+		int max_len=0;
+		int sum=0;
+		map.put(0,-1); 
+		for(int i=0;i<arr.size();i++)
+		{
+			sum+=arr.get(i);
+			if(map.containsKey(sum))
+			{
+				max_len = Math.max((i-map.get(sum)),max_len);
+			}
+			else
+				map.put(sum,i);
+		}
+		return max_len;
+	}
+}
